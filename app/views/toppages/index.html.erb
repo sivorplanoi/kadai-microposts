@@ -7,7 +7,12 @@
         </div>
         <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>
-    </aside>
+      <%= link_to 'Users', users_path, class: 'container-fluid' %>
+      <%= link_to 'My Microposts', user_path(current_user), class: 'container-fluid' %>
+      <%= link_to 'My followings', followings_user_path(current_user), class: 'container-fluid' %>
+      <%= link_to 'My followers', followers_user_path(current_user), class: 'container-fluid' %>
+      <%= link_to 'My Favorites', favorites_user_path(current_user), class: 'container-fluid' %>
+  </aside>
     <div class="col-xs-8">
       <%= render 'microposts/microposts', microposts: @microposts %>
     </div>

@@ -1,0 +1,12 @@
+<% if current_user.already_favorites?(micropost) %>
+  <%= form_for(current_user.relationship_user_microposts.find_by(micropost_id: micropost.id), class: 'form-horizontal',html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :micropost_id, micropost.id %>
+    <%= f.submit 'Remove from favorites', class: 'btn btn-danger btn-xs' %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.relationship_user_microposts.build) do |f| %>
+    <%= hidden_field_tag :micropost_id, micropost.id %>
+    <%= f.submit 'Add to favorites', class: 'btn btn-primary btn-xs' %>
+  <% end %>
+<% end %>
+
