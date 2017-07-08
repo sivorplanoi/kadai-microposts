@@ -15,6 +15,12 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
+    relationships = @micropost.relationship_user_microposts
+    if relationships
+      relationships.each do |r|
+        r.destroy
+      end
+    end
     @micropost.destroy
     flash[:success] = 'メッセージを削除しました。'
     redirect_back(fallback_location: root_path)
